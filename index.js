@@ -86,7 +86,8 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     });
     const url = s3.getSignedUrl('getObject', {
             Bucket: BUCKET,
-            Key: fileKey
+            Key: fileKey,
+            Expires: 99999999
     })
                     
         const {manufacturer, name, price, discount, rate} = myObject
