@@ -1,13 +1,14 @@
 {
   
-  "name": "dixi-backend",
+  "name": "nodejs",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "netlify deploy --prod"
   },
   "keywords": [],
   "author": "",
