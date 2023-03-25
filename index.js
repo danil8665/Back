@@ -3,17 +3,14 @@ import mongoose from 'mongoose'
 import Product from './models/Product.js'
 import authRoute from './routes/authRoute.js'
 import dotenv from "dotenv"
-import { v4 } from 'uuid'
 import cors from 'cors'
 import AWS from 'aws-sdk'
 import bodyParser from 'body-parser'
 import multer from 'multer'
-import serverless from "serverless-http"
-import fs from 'fs'
-import { Stream } from 'stream'
+
 dotenv.config()
 
-const PORT = 80
+const port = process.env.PORT || 3000;
 const DB_URL = `mongodb+srv://danil8665:3edc4rfv@cluster0.dh2l5no.mongodb.net/?retryWrites=true&w=majority`
 const BUCKET = 'my-first-bucket-for-project'
 
@@ -26,9 +23,9 @@ async function startApp() {
     try {
         await mongoose.connect(DB_URL)
         mongoose.set('strictQuery', false);
-        app.listen(PORT, ()=> {
-            console.log(`Server started on port ${PORT}`)
-        })
+        app.listen(port, () => {
+          console.log(`Server listening on port ${port}.`);
+        });
     }
     catch(e) {
         console.log(e)
