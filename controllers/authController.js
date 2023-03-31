@@ -2,9 +2,7 @@ import User from '../models/User.js'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken' 
 import Role from '../models/Role.js'
-import Product from '../models/Product.js'
 import dotenv from "dotenv"
-import router from '../routes/authRoute.js'
 dotenv.config()
 
 export const login = async (req, res) => {
@@ -22,10 +20,11 @@ export const login = async (req, res) => {
        const isPasswordCorrect = await bcrypt.compare(password, user.password)
 
        if (!isPasswordCorrect) {
-           return res.json({
+           return res.status(401).json({
                message: 'Неверный пароль.',
            })
        }
+
 
        const token = jwt.sign(
            {
@@ -101,34 +100,3 @@ export const register = async (req, res) => {
       console.log(error.message)
     }
 }
-
-
-//  export const getMe = async (req, res) => {
-//     try{
-     
-//       const user = await User.findById(req.userId)
-//       if (!user) {
-//          return res.json({
-//              message: 'Такого юзера не существует.',
-//          })
-//      }
-
-//      const token = jwt.sign(
-//         {
-//             id: user._id,
-//             role: user.role
-//         },
-//         ''+ process.env.JWT_KEY,
-//         { expiresIn: '6h' },
-
-//     )
-//     res.json({
-//         user,
-//         token, 
-//     })
-//     }
-//     catch(error) {
-//       res.json({ message: 'Нет доступа' })
-//       console.log(error.message)
-//     }
-//  } 

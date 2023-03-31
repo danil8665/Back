@@ -10,7 +10,7 @@ import multer from 'multer'
 
 dotenv.config()
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 const DB_URL = `mongodb+srv://danil8665:3edc4rfv@cluster0.dh2l5no.mongodb.net/?retryWrites=true&w=majority`
 const BUCKET = 'my-first-bucket-for-project'
 
